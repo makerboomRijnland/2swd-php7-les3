@@ -1,0 +1,41 @@
+version: '3.5'
+name: phples3
+
+# Services
+services:
+
+  # PHP FPM Service
+  php:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - './app:/var/www/html'
+      - './conf/php-logging.conf:/usr/local/etc/php-fpm.d/zz-log.conf'
+    depends_on:
+      - mariadb
+
+  # Nginx Service
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    links:
+      - 'php'
+    volumes:
+      - './app:/var/www/html'
+      - './conf/nginx:/etc/nginx/conf.d'
+    depends_on:
+      - php
+
+  # MariaDB Service
+  mariadb:
+    image: mariadb:10.9
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - './mysqldata:/var/lib/mysql'
+
+# Volumes
+volumes:
+  mysqldata:
