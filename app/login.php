@@ -12,4 +12,5 @@ if(isset($_POST['login'])) {
     } else {
         echo "Access denied";
     }
+    
 }

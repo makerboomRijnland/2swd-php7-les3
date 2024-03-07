@@ -31,10 +31,12 @@ services:
   # MariaDB Service
   mariadb:
     image: mariadb:10.9
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - './mysqldata:/var/lib/mysql'
+      - './conf/database.sql:/docker-entrypoint-initdb.d/init.sql'
 
 # Volumes
 volumes:
