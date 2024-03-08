@@ -7,23 +7,8 @@
 </head>
 <body>
     <h1>Test</h1>
-
-    <form action="login.php" method="post">
-        <h2>Login</h2>
-
-        <p>
-            <label for="login-username">Username</label>
-            <input type="text" name="login[username]" id="login-username">
-        </p>
-
-        <p>
-            <label for="login-password">Password</label>
-            <input type="password" name="login[password]" id="login-password">
-        </p>
-
-        <p>
-            <button type="submit">Login</button>
-        </p>
-    </form>
+    <nav>
+        <a href="login.php">Login</a>
+    </nav>
 </body>
 </html>
