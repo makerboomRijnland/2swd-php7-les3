@@ -1,23 +1,3 @@
-<?php
-
-require_once './models/user.class.php';
-
-$login = $_POST['login'] ?? array();
-
-if(isset($login['username']) && isset($login['password'])) {
-    
-    // In toekomst User opzoeken met username in database.
-    $user = new User('admin', password_hash("admin123", PASSWORD_DEFAULT));
-
-    // Wachtwoord controle
-    if($user->checkPassword($_POST['login']['password'])) {
-        header('Location: index.php');
-    } else {
-        $error = "Gebruikersnaam / Wachtwoord incorrect";
-    }
-
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,12 +10,6 @@ if(isset($login['username']) && isset($login['password'])) {
 
     <form action="login.php" method="post">
         <h2>Login</h2>
-
-        <?php if(isset($login['error'])) { ?>
-
-            <p><?= $login['error']; ?></p>
-                
-        <?php } ?>
 
         <p>
             <label for="login-username">Username</label>
